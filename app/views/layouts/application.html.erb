@@ -10,6 +10,78 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <span>Nagano Cake</span>
+          </a>
+          
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="customer-name text-center mx-5 my-1">
+                  ようこそ、<%= current_customer.last_name %> さん
+                </li>
+                <li class="nav-item">
+                  <%= link_to " マイページ", customer_path(current_customer), class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " 商品一覧", items_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " カート", cart_items_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " ログアウト", destroy_customer_session_path, method: :delete, class:"nav-link text-dark" %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to " 商品一覧", admin_items_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " 会員一覧", admin_customers_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " 注文履歴一覧", admin_orders_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " ジャンル一覧", admin_genres_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link text-dark" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to " About", about_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " 商品一覧", items_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " 新規登録", new_customer_registration_path, class:"nav-link text-dark" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " ログイン", new_customer_session_path, class:"nav-link text-dark" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          
+        </div>
+      </nav>
+    </header>
+    
+    <main>
+      <% if flash[:notice] %>
+        <p id ="notice">
+          <%= flash[:notice] %>
+        </p>
+      <% else %>
+      <% end %>
+      <%= yield %>
+    </main>
+    
+    <footer></footer>
   </body>
 </html>

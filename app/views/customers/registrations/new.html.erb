@@ -1,0 +1,118 @@
+<div class="container my-5">
+  <div class="row my-3">
+    <div class="offset-md-2 col-md-8">
+      <h4>新規会員登録</h4>
+    </div>
+  </div>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "customers/shared/error_messages", resource: resource %>
+  <div class="row">
+    <div class="offset-md-1 col-md-10">
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>名前</p>
+        </div>
+        <div class="col-md-3">
+          <p>(姓)<%= f.text_field :last_name, size: 30 %></p>
+        </div>
+        <div class="col-md-3">
+          <p>(名)<%= f.text_field :first_name, size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>フリガナ</p>
+        </div>
+        <div class="col-md-3">
+          <p>(セイ)<%= f.text_field :last_name_kana, size: 30 %></p>
+        </div>
+        <div class="col-md-3">
+          <p>(メイ)<%= f.text_field :first_name_kana, size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>メールアドレス</p>
+        </div>
+        <div class="col-md-3">
+          <p><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>郵便番号(ハイフンなし)</p>
+        </div>
+        <div class="col-md-3">
+          <p><%= f.text_field :postal_code, size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>住所</p>
+        </div>
+        <div class="col-md-3">
+          <p><%= f.text_field :address, size: 64 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>電話番号(ハイフンなし)</p>
+        </div>
+        <div class="col-md-3">
+          <p><%= f.text_field :telephone_number, size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>パスワード(6文字以上)</p>
+        </div>
+        <div class="col-md-3">
+          <p><%= f.password_field :password, autocomplete: "new-password", size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>パスワード(確認用)</p>
+        </div>
+        <div class="col-md-3">
+          <p><%= f.password_field :password_confirmation, autocomplete: "new-password", size: 30 %></p>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p></p>
+        </div>
+        <div class="col-md-3">
+          <div class="actions">
+            <%= f.submit "新規登録", class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <% end %>
+  
+  <div class="row mt-5">
+    <div class="offset-md-2 col-md-8">
+      <h4>既に登録済みの方</h4>
+    </div>
+  </div>
+  
+  <div class="row my-3">
+    <div class="offset-md-2 col-md-8">
+      <p class="mx-4"><%= link_to "こちら", new_customer_session_path %> からログインください。</p>
+    </div>
+  </div>
+  
+</div>
+

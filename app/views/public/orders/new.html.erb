@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="w-100">
+
+        <%= form_with model: @order, url:confirm_orders_path, class: "offset-md-1", local: true do |f| %>
+        <h2 class="ml-4"><strong>注文情報入力</strong></h2>
+        <strong>支払方法</strong>
+        <div class="col-xs-10 radio ml-3">
+          <%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
+          <span>&nbspクレジットカード</span>
+        </div>
+        <div class="col-xs-10 radio ml-3 mb-3">
+          <%= f.radio_button :payment_method, :"銀行振込" %>
+          <span>&nbsp銀行振込</span>
+        </div>
+
+        <strong>お届け先</strong>
+
+        <div class="col-xs-10 radio ml-3 mb-2">
+          <%= f.radio_button :addresses, "residence", checked: true %>
+          <span>ご自身の住所</span><br>
+          <div class="ml-3">
+            &nbsp&nbsp<%= "#{current_customer.postal_code}""#{current_customer.address}" %><br>
+            &nbsp&nbsp<%= "#{current_customer.last_name}""#{current_customer.first_name}" %>
+          </div>
+        </div>
+
+        <div class="col-xs-10 radio ml-3 mb-2">
+          <%= f.radio_button :addresses,  "registration"%>
+          <span>&nbsp登録済住所から選択</span><br>
+          <div class="ml-3"><%= f.collection_select(:address_id, @addresses, :id, :address) %></div>
+        </div>
+
+        <div class="new-address col-xs-12 radio ml-3 mb-2">
+          <%= f.radio_button :addresses, "new_address" %>
+          <span>&nbsp新しいお届け先</span><br>
+          <div class="field form-group col-md-11 row">
+            <%= f.label :"郵便番号（ハイフンなし）", class: "control-label col-md-3"  %>
+            <%= f.text_field :postal_code, class: "col-md-3 form-control-static postal_code" %>
+          </div>
+          <div class="field form-group col-md-11 row">
+            <%= f.label :"住所", class: "control-label col-md-3"  %>
+            <%= f.text_field :address, class: "col-md-5 form-control-static address" %>
+          </div>
+          <div class="field form-group col-md-11 row">
+            <%= f.label :"宛名", class: "ontrol-label col-md-3"  %>
+            <%= f.text_field :name, class: "col-md-3 form-control-static" %>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary col-xs-5 mt-4 w-50 mr-5" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

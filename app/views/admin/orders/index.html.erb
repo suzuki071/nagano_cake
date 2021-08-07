@@ -1,0 +1,37 @@
+<div class="container my-5">
+  <div class="row">
+    <h4>注文履歴一覧</h4>
+  </div>
+
+  <div class="row mt-5">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |orders| %>
+          <tr>
+            <td>
+              <%= link_to orders.created_at, admin_order_path(orders.id) %>
+            </td>
+            <td>
+              <%= orders.customer.last_name %><%= orders.customer.first_name %>
+            </td>
+            <td>
+              <%= orders.order_items.sum(:amount) %>
+            </td>
+            <td>
+              <%= orders.status %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+  </div>
+ </div>

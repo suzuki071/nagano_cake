@@ -1,0 +1,111 @@
+<%= form_with model: @customer, url: admin_customer_path, local: true do |f| %>
+<div class="container my-5">
+  <div class="row">
+    <div class="offset-md-1 col-md-10 my-3">
+      <h4><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
+    </div>
+  </div>
+  
+  
+  <div class="offset-md-1 col-md-10">
+    <div class="mx-auto">
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>会員ID</p>
+        </div>
+        <div class="col-md-1">
+          <%= @customer.id %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>氏名</p>
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :last_name, size: 30 %>
+        </div>
+        <div class="col-md-1">
+          <%= f.text_field :first_name, size: 30 %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>フリガナ</p>
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :last_name_kana, size: 30 %>
+        </div>
+        <div class="col-md-1">
+          <%= f.text_field :first_name_kana, size: 30 %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>郵便番号</p>
+        </div>
+        <div class="col-md-1">
+          <%= f.text_field :postal_code, size: 30 %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>住所</p>
+        </div>
+        <div class="col-md-1">
+          <%= f.text_field :address, size: 100 %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>電話番号</p>
+        </div>
+        <div class="col-md-1">
+          <%= f.text_field :telephone_number, size: 30 %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>メールアドレス</p>
+        </div>
+        <div class="col-md-1">
+          <%= f.text_field :email, size: 30 %>
+        </div>
+      </div>
+      
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3">
+          <p>会員ステータス</p>
+        </div>
+        <div class="done col-md-3">
+          <div class="row">
+            <div>
+              <%= f.radio_button :is_active, true %>
+              <%= f.label :is_active, '退会', value: true %>
+            </div>
+            <div class="col-md-1"></div>
+            <div>
+              <%= f.radio_button :is_active, false %>
+              <%= f.label :is_active, '有効', value: false %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="font-size: 13px; margin-top: 10px;">
+        <div class="col-md-3 text-left">
+        </div>
+        <div class="col-md-2 text-right">
+          <%= f.submit "変更を保存", class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<% end %>

@@ -1,0 +1,44 @@
+<div class="container-xxl mt-5 mx-5">
+
+  <h3><mark>配送先登録/一覧</mark></h3>
+
+  <div class="new-deliver-destination row mt-5 pb-5" style="margin-left: 0; margin-right: 0; padding-left: 0;">
+    <%= form_with model: @address, url: addresses_path, class: "col-12", local: true do |f| %>
+      <%= f.label "郵便番号(ハイフンなし)", class: "col-2 mr-3" %>
+      <%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "1500041", class: "col-2 form-ph" %>
+      <div class="w-100"></div>
+      <%= f.label "住所", class: "col-2 mr-3" %>
+      <%= f.text_field :address, autocomplete: "address", placeholder: "東京都渋谷区神南1-19-11", class: "col-4 form-ph" %>
+      <div class="w-100"></div>
+      <%= f.label "宛名", class: "col-2 mr-3" %>
+      <%= f.text_field :name, autocomplete: "name", placeholder: "山田花子", class: "col-2 form-ph" %>
+      <%= f.submit "新規登録", class: "btn btn-success col-2 offset-md-2" %>
+    <% end %>
+  </div>
+
+  <div class="deliver-destination-index mt-5 row">
+    <table class="table col-md-7 deliver_destination_index_table">
+      <thead class="table-active border">
+        <tr>
+          <td class="border border-dark postcode">郵便番号</td>
+          <td class="border border-dark address">住所</td>
+          <td class="border border-dark destination">宛名</td>
+          <td class="border border-dark btn-space"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td class="border border-dark"><%= address.postal_code %></td>
+            <td class="border border-dark"><%= address.address %></td>
+            <td class="border border-dark"><%= address.name %></td>
+            <td class="border border-dark text-center">
+              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success" %>
+              <%= link_to "削除する", address_path(address), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ 
+ .main-img {
+  background-image: image-url('nagano_cake.jpg');
+  height: 400px;
+  width: 800px;
+  // background-size: auto 100%;
+ }
